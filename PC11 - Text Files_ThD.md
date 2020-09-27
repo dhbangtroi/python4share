@@ -314,6 +314,7 @@ Once the program is finished and debugged, I can remove the references to `count
 
 ```python
 # Counting "fortunato".
+# Version 1 (count per line)
 def display_contents_file4(file_name):
     fp = open(file_name)
     count = 0
@@ -325,6 +326,35 @@ def display_contents_file4(file_name):
             #print(count)
             #print( buffer, end="" )
             count += 1
+    fp.close()
+    return count
+    
+display_contents_file4( "pc_amontillado.txt")
+```
+
+
+
+
+    14
+
+
+
+
+```python
+# Version 2 (count per word)
+def display_contents_file4(file_name):
+    fp = open(file_name)
+    count = 0
+    while True:
+        buffer = fp.readline()
+        if buffer == "":
+            break
+        words = buffer.split()  
+        for w in words:
+            if 'fortunato' in w.lower():
+                #print(count)
+                #print( buffer, end="" )
+                count += 1
     fp.close()
     return count
     
