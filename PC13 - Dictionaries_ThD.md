@@ -110,9 +110,9 @@ print( id( fruitbasketalias ) )
 print( id( fruitbasketcopy ) )
 ```
 
-    2209308352960
-    2209308352960
-    2209308352768
+    2156787902528
+    2156787902528
+    2156787902272
     
 
 Note that this method makes a shallow copy of the dictionary (see the previous chapter if you do not remember the difference between shallow and deep copies). If you want to make a deep copy, use the `deepcopy()` function from the `copy` module.
@@ -270,23 +270,24 @@ english_dutch = { "last":"laatst", "week":"week", "the":"de",
     "two":"twee", "shed":"schuur", "sheds":"schuren" }
 
 def translate(english_text):
-    eng_lower = english_text.lower()
-    eng_split = eng_lower.split()
-    eng_trans = ''
-    for elm in eng_split:
-        elm_adj = []
-        for char in elm:
-            if char < "a" or char > "z":
-                elm_adj.append(' ')
-            else:
-                elm_adj.append(char)
-        new_elm = ''.join(elm_adj)
-        for word in new_elm.split():
-            dutch_word = english_dutch.get(word, 0)
-            if dutch_word == 0:
-                dutch_word = word
-            eng_trans +=  ' ' + dutch_word
-    return eng_trans.strip() #a word-by-word translation of english_text to dutch 
+    text_lower = english_text.lower()
+
+    # Remove punctuation
+    word_adj_list = []
+    for char in text_lower:
+        if char < "a" or char > "z":
+            word_adj_list.append(' ')
+        else:
+            word_adj_list.append(char)
+    text_adj = ''.join(word_adj_list)
+
+    # Translate word by word
+    text_split = text_adj.split()
+    text_trans = []
+    for word in text_split:
+        dutch_word = english_dutch.get(word, word)
+        text_trans.append(dutch_word)
+    return ' '.join(text_trans) #a word-by-word translation of english_text to dutch 
 
 sentence = "Last week The Royal Festival Hall saw the first performance of \
 a new symphony by one of the world's leading modern composers, Arthur \"Two-Sheds\" Jackson."
@@ -408,7 +409,7 @@ def duration_check_numbers_in_list():
 print(duration_check_numbers_in_list())
 ```
 
-    1.58199 seconds needed to find 0 numbers
+    1.45204 seconds needed to find 0 numbers
     
 
 Here is the code for doing the same thing with a dictionary, where we simply store the value 1 with each number.

@@ -560,8 +560,8 @@ print( id( fruitlist ) )
 print( id( newfruitlist ) )
 ```
 
-    1714861209152
-    1714861209152
+    2076607554880
+    2076607554880
     
 
 If you want to create a copy of a list, you can do so using a little trick. Instead of using `<newlist> = <oldlist>`, you use the command `<newlist> = <oldlist>[:]`.
@@ -582,9 +582,9 @@ print( newfruitlist )
 print( verynewfruitlist )
 ```
 
-    1714861389952
-    1714861389952
-    1714862332608
+    2076607560576
+    2076607560576
+    2076607561216
     ['apple', 'banana', 'orange', 'durian']
     ['apple', 'banana', 'orange', 'durian']
     ['apple', 'banana', 'cherry', 'durian']
